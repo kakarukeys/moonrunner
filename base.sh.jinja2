@@ -1,0 +1,11 @@
+set -e
+
+cd /d/projects/{{ name }}
+
+{% block body %}
+{% endblock %}
+
+/d/{% if ver == 21 %}Pypy{% else %}Python{% endif %}{{ ver }}/Scripts/virtualenv --system-site-packages /d/virtualenvs/{{ name }}
+if [ -f requirements.txt ]; then
+    /d/virtualenvs/{{ name }}/Scripts/pip install -r requirements.txt
+fi

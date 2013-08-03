@@ -1,0 +1,15 @@
+{% extends "base.sh.jinja2" %}
+
+{% block body %}
+    {% if type == "django" %}
+        cp -r /d/projects/boilerplate/* .
+        rm -rf .git
+    {% elif type == "angular" %}
+        cp -r /d/projects/boilerplate-angular/* .
+        rm -rf .git
+    {% endif %}
+
+    /c/Program\ Files/Git/bin/git init
+    /c/Program\ Files/Git/bin/curl -u 'kakarukeys' https://api.github.com/user/repos -d '{"name":"{{ name }}"}'
+    /c/Program\ Files/Git/bin/git remote add origin git@github.com:kakarukeys/{{ name }}.git
+{% endblock %}
